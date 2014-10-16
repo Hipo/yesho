@@ -1,0 +1,20 @@
+{% extends "admin/change_form.html" %}
+
+
+{% block after_field_sets %}
+{% if user_can_see_properties_of_the_model %}
+<div style="margin-top: 15px;">
+    <button id="properties-display-btn" class="btn" data-loading-text="Loading..." onclick="addItem(); return false;">{{ display_properties_button_label }}</button>
+    <div id="result"></div>
+</div>
+    <script>
+    function addItem(){
+        var btn = $("#properties-display-btn")
+        btn.button('loading')
+        $("#result").load( './properties/', function(){
+            btn.hide()
+        });
+    }
+    </script>
+{% endif %}
+{% endblock %}
