@@ -48,6 +48,7 @@ After extending your admin class from YeshoAdmin or mixed it with YeshoMixin,
 you will have some controls on the behaviour.
 
 Example:
+
 .. code-block:: python
 
     from yesho.admin import YeshoMixin
