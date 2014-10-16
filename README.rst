@@ -6,12 +6,6 @@ A reusable django app that displays model properties for superusers (or all user
 Installation
 ------------
 
-To get the latest stable release from PyPi
-
-.. code-block:: bash
-
-    pip install yesho
-
 To get the latest commit from GitHub
 
 .. code-block:: bash
@@ -50,24 +44,37 @@ or
 Usage
 -----
 
-TODO: Describe usage or point to docs. Also describe available settings and
-templatetags.
+After extending your admin class from YeshoAdmin or mixed it with YeshoMixin,
+you will have some controls on the behaviour.
+
+Example:
+.. code-block:: python
+
+    from yesho.admin import YeshoMixin
+
+    class MeetupAdmin(YeshoMixin, admin.ModelAdmin):
+
+        display_properties_button_label = "Display all properties of the model"
+
+        on_demand_display_template = "yesho/on_demand_display.html"
+        change_form_template = "yesho/change_form.html"
+
+        excluded_properties = None
+        show_only_to_superusers = True
 
 
-Contribute
-----------
+We believe that the most important variables are **excluded_properties** and **show_only_to_superusers**.
 
-If you want to contribute to this project, please perform the following steps
+If you pass the list of the properties that you want to exclude from the list to the excluded_properties variable,
+they won't be shown at the properties list. This is useful for very heavy properties that you don't want to see in this list.
 
-.. code-block:: bash
+The default of the **show_only_to_superusers** is True. This means that this button will only be shown to super users.
+If you explicitly set to False, than every user will see the button.
 
-    # Fork this repository
-    # Clone your fork
-    mkvirtualenv -p python2.7 yesho
-    make develop
 
-    git co -b feature_branch master
-    # Implement your feature and tests
-    git add . && git commit
-    git push -u origin feature_branch
-    # Send us a pull request for your feature branch
+To Do's
+-------
+
+We developed this package for django suit admin theme. Although we love django suit, it would be great
+if you can help us in order to support django classic admin and django grapelli.
+If you have any idea, do not hesitate to contact us through the issue tracker.
