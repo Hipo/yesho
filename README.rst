@@ -1,7 +1,7 @@
 Yesho - Display Model Properties in Django Admin
 ============
 
-A reusable django app that displays model properties for superusers (or all users) in the Django Admin Panel. Just add YeshoMixin to your ModelAdmins.
+A reusable django app that displays model properties for superusers (or all users) in the Django Admin Panel. 
 
 Installation
 ------------
@@ -16,9 +16,7 @@ To get the latest commit from GitHub
 
 .. code-block:: bash
 
-    pip install -e git+git://.git#egg=yesho
-
-TODO: Describe further installation steps (edit / remove the examples below):
+    pip install -e git+git://github.com/Hipo/yesho.git#egg=yesho
 
 Add ``yesho`` to your ``INSTALLED_APPS``
 
@@ -29,28 +27,25 @@ Add ``yesho`` to your ``INSTALLED_APPS``
         'yesho',
     )
 
-Add the ``yesho`` URLs to your ``urls.py``
+Add YeshoMixin to your ModelAdmins or extend your admin controllers from YeshoAdmin
 
 .. code-block:: python
 
-    urlpatterns = patterns('',
+    from yesho.admin import YeshoMixin
+    
+    class MeetupAdmin(YeshoMixin, admin.ModelAdmin):
+        search_fields = ("name", "body")
         ...
-        url(r'^app-url/', include('yesho.urls')),
-    )
 
-Before your tags/filters are available in your templates, load them by using
+or 
 
-.. code-block:: html
+.. code-block:: python
 
-	{% load yesho_tags %}
-
-
-Don't forget to migrate your database
-
-.. code-block:: bash
-
-    ./manage.py migrate yesho
-
+    from yesho.admin import YeshoAdmin
+    
+    class MeetupAdmin(YeshoAdmin):
+        search_fields = ("name", "body")
+        ...
 
 Usage
 -----
