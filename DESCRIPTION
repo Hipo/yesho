@@ -1,0 +1,1 @@
+A reusable django app that displays model properties for superusers (or all users) in the Django Admin Panel. Just add YeshoMixin to your ModelAdmins.

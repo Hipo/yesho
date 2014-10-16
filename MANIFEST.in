@@ -1,0 +1,9 @@
+include AUTHORS
+include LICENSE
+include DESCRIPTION
+include CHANGELOG.txt
+include README.md
+graft yesho
+global-exclude *.orig *.pyc *.log *.swp
+prune yesho/tests/coverage
+prune yesho/.ropeproject
